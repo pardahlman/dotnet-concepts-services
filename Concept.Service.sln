@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service", "Concept.Service\Concept.Service.csproj", "{47B62B7A-4824-4B98-9009-38C9EA99D271}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service.ConsoleHost", "Concept.Service.ConsoleHost\Concept.Service.ConsoleHost.csproj", "{982618AB-AF23-49D2-A1D3-ECDDCB7043F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service.Opinionated", "Concept.Service.Opinionated\Concept.Service.Opinionated.csproj", "{CF0A9CC8-B6F3-47DB-A410-9D2F0BF8A14A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service.RabbitMq", "Concept.Service.RabbitMq\Concept.Service.RabbitMq.csproj", "{0771D0B5-5E92-45EB-9F6C-EC93C9406D0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service.WindowsService", "Concept.Service.WindowsService\Concept.Service.WindowsService.csproj", "{4636EA8A-6D0F-4B13-90CF-6D6F0D2746E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Service.AzureWebJobs", "Concept.Service.AzureWebJobs\Concept.Service.AzureWebJobs.csproj", "{D42061AB-001E-41D5-91D7-0FC4187B653D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47B62B7A-4824-4B98-9009-38C9EA99D271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B62B7A-4824-4B98-9009-38C9EA99D271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B62B7A-4824-4B98-9009-38C9EA99D271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B62B7A-4824-4B98-9009-38C9EA99D271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982618AB-AF23-49D2-A1D3-ECDDCB7043F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982618AB-AF23-49D2-A1D3-ECDDCB7043F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982618AB-AF23-49D2-A1D3-ECDDCB7043F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982618AB-AF23-49D2-A1D3-ECDDCB7043F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF0A9CC8-B6F3-47DB-A410-9D2F0BF8A14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF0A9CC8-B6F3-47DB-A410-9D2F0BF8A14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF0A9CC8-B6F3-47DB-A410-9D2F0BF8A14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF0A9CC8-B6F3-47DB-A410-9D2F0BF8A14A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0771D0B5-5E92-45EB-9F6C-EC93C9406D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0771D0B5-5E92-45EB-9F6C-EC93C9406D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0771D0B5-5E92-45EB-9F6C-EC93C9406D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0771D0B5-5E92-45EB-9F6C-EC93C9406D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4636EA8A-6D0F-4B13-90CF-6D6F0D2746E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4636EA8A-6D0F-4B13-90CF-6D6F0D2746E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4636EA8A-6D0F-4B13-90CF-6D6F0D2746E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4636EA8A-6D0F-4B13-90CF-6D6F0D2746E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42061AB-001E-41D5-91D7-0FC4187B653D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42061AB-001E-41D5-91D7-0FC4187B653D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42061AB-001E-41D5-91D7-0FC4187B653D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42061AB-001E-41D5-91D7-0FC4187B653D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5145BE9-3926-4C8C-95AF-A04E4E6EC788}
+	EndGlobalSection
+EndGlobal
