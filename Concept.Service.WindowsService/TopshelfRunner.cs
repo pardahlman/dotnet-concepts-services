@@ -2,7 +2,7 @@
 
 namespace Concept.Service.WindowsService
 {
-  public class TopShelfRunner
+  public class TopshelfRunner
   {
     public static void Start<TService>(ServiceBootstrap<TService> bootstrap) where TService : Service
     {
