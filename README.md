@@ -4,18 +4,19 @@
 
 ## Example
 
-Inherit from `Service` ad override `StartAsync`
-
 ```csharp
+// Inherit from `Service` and override `StartAsync`
 public class ExampleServer : Service
 {
   private readonly IChecker _checker;
 
+  // dependency inject
   public ExampleServer(IChecker checker)
   {
     _checker = checker;
   }
 
+  // trigger starting actions
   public override async Task StartAsync(CancellationToken ct = default(CancellationToken))
   {
     await _checker.CheckAsync();
@@ -60,12 +61,19 @@ public class ExampleServiceBootstrap : ServiceBootstrap<ExampleServer>, IDispose
   {
     return _autofacContainer.Resolve<ExampleServer>();
   }
-
-  public void Dispose()
-  {
-    _autofacContainer.Dispose();
-  }
 }
+```
+
+Run it
+
+```csharp
+var bootstrap = new ExampleServiceBootstrap();
+
+// run it in as a console app
+ConsoleRunner.Start(bootstrap);
+
+// or a topshelf service
+TopshelfRunner.Start(bootstrap);
 ```
 
 ## Opinionated service
