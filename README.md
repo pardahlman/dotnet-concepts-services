@@ -1,6 +1,6 @@
 # Concept: Services
 
-> Conceptual classes for handling lifetime events of a hosting agnostic service
+> Conceptual classes for handling lifetime events of hosting agnostic services
 
 ## Example
 
