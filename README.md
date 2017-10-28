@@ -2,101 +2,84 @@
 
 > Conceptual classes for handling lifetime events of hosting agnostic services
 
-## Example
+* Targets .NET Standard 2.0, runs on .NET Core
+* Clear separation between service, bootstrapper and host
+* No-dependency base libraries for custom implementations, add on libraries with opinionated defaults
+* Host hybrid service with ASP.NET Core
+
+:blue_book: Full documentation at [`dotnet-concepts-services.readthedocs.io`](http://dotnet-concepts-services.readthedocs.io/en/latest/).
+
+## Create Service
+
+A service is defined by implementing a class derived from `Service`. The method `StartAsync` will be called when the service is started, and can be considered as the entry point to the service. Optionally, `StopAsync` can be overridden to implement clean up activities, like disposing services.
 
 ```csharp
-// Inherit from `Service` and override `StartAsync`
-public class ExampleServer : Service
+public class TimeService : Service
 {
-  private readonly IChecker _checker;
+  private readonly IWorldClock _clock;
+  private Timer _timer;
 
-  // dependency inject
-  public ExampleServer(IChecker checker)
+  public TimeService(IWorldClock clock)
   {
-    _checker = checker;
+    _clock = clock;
   }
 
-  // trigger starting actions
   public override async Task StartAsync(CancellationToken ct = default(CancellationToken))
   {
-    await _checker.CheckAsync();
-  }
-}
-```
-
-Create a bootstrapper for the service
-
-```csharp
-public class ExampleServiceBootstrap : ServiceBootstrap<ExampleServer>, IDisposeable
-{
-  private IContainer _autofacContainer;
-
-  public override ServiceMetadata CreateMetadata()
-  {
-    return new ServiceMetadata
+    _timer = new Timer(time =>
     {
-      Name = nameof(ExampleServer),
-      Description = "Nothing to fancy"
-    };
-  }
-
-  public override void ConfigureLogger()
-  {
-    Log.Logger = new LoggerConfiguration()
-      .WriteTo.LiterateConsole()
-      .Enrich.FromLogContext()
-      .CreateLogger();
-  }
-
-  public override void RegisterDependencies()
-  {
-    var builder = new ContainerBuilder();
-    builder
-      .RegisterType<Checker>()
-      .AsImplementedInterfaces();
-    _autofacContainer = builder.Build();
-  }
-
-  public override ExampleServer CreateService()
-  {
-    return _autofacContainer.Resolve<ExampleServer>();
+      Log.Information("It is {timeOfDay}, and all is well", _clock.GetTime());
+    }, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
   }
 }
 ```
 
-Run it
+## Create Bootstrap
+
+The `IServiceBootstrap` is responsible for configuring the applicatoin logger and wire-up the dependency injection container. It is not primed to any specific frameworks, as the interface [only contains hooks](https://github.com/pardahlman/dotnet-concepts-services/blob/master/src/Concept.Service/ServiceBootstrap.cs#L7). For convinience, there are implementations that wire up different populare libraries.
+
+The `OpinionatedServiceBootstrap` configures a [Serilog](https://serilog.net/) logger and creates an [Autofac](https://autofac.org/) container to register services in.
 
 ```csharp
-var bootstrap = new ExampleServiceBootstrap();
-
-// run it in as a console app
-ConsoleRunner.Start(bootstrap);
-
-// or a topshelf service
-TopshelfRunner.Start(bootstrap);
-```
-
-## Opinionated service
-
-If you are like me like [Serilog](https://serilog.net/) and [Autofac](https://autofac.org/) you can use the `OpinionatedServiceBootstrap` for a less verbose bootstrapper
-
-```csharp
-public class ExampleServiceBootstrap : OpinionatedServiceBootstrap<ExampleServer>
+public class TimeBootstrap : OpinionatedServiceBootstrap<TimeService>
 {
   public override ServiceMetadata CreateMetadata()
   {
     return new ServiceMetadata
     {
-      Name = nameof(ExampleServer),
-      Description = "Nothing to fancy"
+      Type = typeof(TimeService),
+      Name = nameof(TimeService),
+      Description = "Tells the time"
     };
   }
 
   protected override void RegisterDependencies(ContainerBuilder builder)
   {
     builder
-      .RegisterType<Checker>()
+      .RegisterType<WorldClock>()
       .AsImplementedInterfaces();
+    builder
+      .RegisterType<TimeService>()
+      .AsSelf();
   }
+}
+```
+
+## Run the service
+
+The service can be run in a few different ways. The most straight forward option is to use the `ConsoleRuner`
+
+```csharp
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        MainAsync(args).GetAwaiter().GetResult();
+    }
+
+    public static async Task MainAsync(string[] args)
+    {
+        await ConsoleRunner.StartAsync(new TimeBootstrap());
+    }
 }
 ```
