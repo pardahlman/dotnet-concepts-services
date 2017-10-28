@@ -1,4 +1,5 @@
-﻿using Topshelf;
+﻿using System;
+using Topshelf;
 
 namespace Concept.Service.WindowsService
 {
@@ -21,11 +22,11 @@ namespace Concept.Service.WindowsService
         host.UseLibLog();
         host.SetDescription(metadata.Description);
         host.SetServiceName(metadata.Name);
-        host.Service<TService>(service =>
+        host.Service<Service>(service =>
         {
           service.WhenStarted(s => s.StartAsync().ConfigureAwait(false).GetAwaiter().GetResult());
           service.WhenStopped(s => s.StopAsync().ConfigureAwait(false).GetAwaiter().GetResult());
-          service.ConstructUsing(bootstrap.CreateService);
+          service.ConstructUsing(() => bootstrap.GetServiceAsync().ConfigureAwait(false).GetAwaiter().GetResult());
         });
         host.StartAutomatically();
       });

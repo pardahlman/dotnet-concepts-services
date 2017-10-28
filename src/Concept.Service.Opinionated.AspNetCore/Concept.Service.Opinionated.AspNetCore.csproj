@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <VersionPrefix>0.0.2</VersionPrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Concept.Service.AspNetCore.Abstractions\Concept.Service.AspNetCore.Abstractions.csproj" />
+    <ProjectReference Include="..\Concept.Service.Opinionated\Concept.Service.Opinionated.csproj" />
+  </ItemGroup>
+
+</Project>

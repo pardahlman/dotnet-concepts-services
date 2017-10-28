@@ -44,6 +44,8 @@ using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("Concept.Service.ConsoleHost")]
 [assembly:InternalsVisibleTo("Concept.Service.WindowsService")]
+[assembly:InternalsVisibleTo("Concept.Service.TopshelfHost")]
+[assembly:InternalsVisibleTo("Concept.Service.HostBuilder")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Concept.Logging")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Scope = "member", Target = "Concept.Logging.Logger.#Invoke(Concept.Logging.LogLevel,System.Func`1<System.String>,System.Exception,System.Object[])")]
 

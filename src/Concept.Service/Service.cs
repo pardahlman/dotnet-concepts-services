@@ -9,7 +9,7 @@ namespace Concept.Service
     private readonly ILog _logger = LogProvider.For<Service>();
     public abstract Task StartAsync(CancellationToken ct = default (CancellationToken));
 
-    public virtual Task StopAsync()
+    public virtual Task StopAsync(CancellationToken ct = default (CancellationToken))
     {
       _logger.Info("Stopping service.");
       return Task.CompletedTask;

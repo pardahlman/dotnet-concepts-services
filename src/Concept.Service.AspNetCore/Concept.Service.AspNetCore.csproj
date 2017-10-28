@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <VersionPrefix>0.0.2</VersionPrefix>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Concept.Service.AspNetCore.Abstractions\Concept.Service.AspNetCore.Abstractions.csproj" />
+    <ProjectReference Include="..\Concept.Service.HostBuilder\Concept.Service.HostBuilder.csproj" />
+    <ProjectReference Include="..\Concept.Service.MicrosoftExtensions\Concept.Service.MicrosoftExtensions.csproj" />
+  </ItemGroup>
+
+</Project>

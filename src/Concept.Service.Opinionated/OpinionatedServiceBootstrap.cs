@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Autofac;
 using Serilog;
 
@@ -22,9 +23,9 @@ namespace Concept.Service.Opinionated
       AutofacContainer = builder.Build();
     }
 
-    public override TService CreateService()
+    protected override Task<TService> CreateServiceAsync()
     {
-      return AutofacContainer.Resolve<TService>();
+      return Task.FromResult(AutofacContainer.Resolve<TService>());
     }
 
     protected abstract void RegisterDependencies(ContainerBuilder builder);
