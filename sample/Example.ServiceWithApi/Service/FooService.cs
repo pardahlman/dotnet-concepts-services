@@ -10,23 +10,24 @@ namespace Example.ServiceWithApi
 {
   public class FooService : RabbitMqService
   {
-    private readonly ILogger<FooService> _logger;
+    public FooService(IBusClient busClient) : base(busClient) { }
 
-    public FooService(ILogger<FooService> logger, IBusClient busClient) : base(busClient)
-    {
-      _logger = logger;
-    }
     public override async Task StartAsync(CancellationToken ct = default(CancellationToken))
     {
-      _logger.LogInformation("Started");
       await SubscribeAsync<PerformFoo>(HandlePerformFoo, ct: ct);
     }
 
-    private static Task HandlePerformFoo(PerformFoo message, ConceptContext context)
+    private async Task HandlePerformFoo(PerformFoo message, ConceptContext context)
     {
-      throw new NotImplementedException();
+      // handle message
+      await PublishAsync(new FooPerformed {Success = true});
     }
   }
 
   public class PerformFoo { }
+
+  public class FooPerformed
+  {
+    public bool Success { get; set; }
+  }
 }

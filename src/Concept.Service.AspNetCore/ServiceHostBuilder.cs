@@ -9,7 +9,7 @@ namespace Concept.Service.AspNetCore
   {
     private readonly IServiceCollection _serviceCollection;
 
-    public ServiceHostBuilder(ServiceBootstrap bootstrap)
+    public ServiceHostBuilder(IServiceBootstrap bootstrap)
     {
       bootstrap.PreConfigureLogger();
       bootstrap.ConfigureLogger();

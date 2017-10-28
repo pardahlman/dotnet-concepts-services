@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using Concept.Logging;
 using Concept.Service.AspNetCore.Abstractions;
 using Concept.Service.HostBuilder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,8 +11,11 @@ namespace Concept.Service.AspNetCore
 {
   public static class ServiceHostBuilderExtensions
   {
+    private static readonly ILog Logger = LogProvider.GetLogger(typeof(ServiceHostBuilderExtensions));
+
     public static IServiceHostBuilder UseWebHost(this IServiceHostBuilder builder, IWebHostBuilder existingWebHost = null)
     {
+      Logger.Debug("Registering WebHost services.");
       builder.ConfigureServices(collection =>
       {
         collection.AddSingleton(provider =>
@@ -19,6 +23,7 @@ namespace Concept.Service.AspNetCore
           var serviceMetadata = provider.GetService<ServiceMetadata>();
           if (!(provider.GetService<ServiceBootstrap>() is IAspNetCoreBootstrap aspNetBootstrap))
           {
+            Logger.Info("The service bootstrap {serviceBootstrap} does not implement IAspNetCoreBootstrap. WebHost will not be created", serviceMetadata.GetType().Name);
             throw new Exception("Bootstrap is not of type IAspNetCoreBootstrap.");
           }
 

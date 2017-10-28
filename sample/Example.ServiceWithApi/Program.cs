@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Concept.Service.AspNetCore;
 using Concept.Service.ConsoleHost;
 using Concept.Service.HostBuilder;
+using Example.ServiceWithApi.Service;
 
 namespace Example.ServiceWithApi
 {
@@ -18,14 +18,12 @@ namespace Example.ServiceWithApi
 
     public static async Task MainAsync(string[] args)
     {
-      var cts = new CancellationTokenSource();
-
       var host = new ServiceHostBuilder(new OpinionatedFooBootstrap())
         .UseConsoleHost()
         .UseWebHost()
         .Build();
 
-      await host.RunAsync(cts.Token);
+      await host.RunAsync();
     }
   }
 }

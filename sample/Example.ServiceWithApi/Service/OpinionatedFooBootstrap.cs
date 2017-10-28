@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Example.ServiceWithApi
+namespace Example.ServiceWithApi.Service
 {
   public class OpinionatedFooBootstrap : OpinionatedAspNetCoreBootstrap<FooService>
   {

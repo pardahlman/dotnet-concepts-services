@@ -7,24 +7,23 @@ namespace Concept.Service.ConsoleHost
 {
   public class ConsoleHostEntryPoint : IServiceEntryPoint
   {
-    private readonly ServiceBootstrap _bootstrap;
+    private readonly IServiceBootstrap _bootstrap;
 
-    public ConsoleHostEntryPoint(ServiceBootstrap bootstrap)
+    public ConsoleHostEntryPoint(IServiceBootstrap bootstrap)
     {
       _bootstrap = bootstrap;
     }
 
-    public Task StartAsync(CancellationToken ct = default(CancellationToken))
+    public async Task StartAsync(CancellationToken ct = default(CancellationToken))
     {
       try
       {
-        return _bootstrap.StartServiceAsync(ct);
+        await _bootstrap.StartServiceAsync(ct);
       }
       catch (Exception)
       {
-        _bootstrap.ConfigureLogger();
         _bootstrap.RegisterDependencies();
-        return _bootstrap.StartServiceAsync(ct);
+        await _bootstrap.StartServiceAsync(ct);
       }
     }
   }

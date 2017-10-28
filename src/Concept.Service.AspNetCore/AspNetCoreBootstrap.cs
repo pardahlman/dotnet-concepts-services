@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Concept.Service.AspNetCore.Abstractions;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +46,8 @@ namespace Concept.Service.AspNetCore
       {
         Name = typeof(TService).Name,
         Type = typeof(TService),
+        Version = typeof(TService).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
+
       };
     }
 
