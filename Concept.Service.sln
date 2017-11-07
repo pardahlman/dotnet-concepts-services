@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service.TopshelfHos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.ServiceWithApi", "sample\Example.ServiceWithApi\Example.ServiceWithApi.csproj", "{8F321D0C-D857-4EF2-99B4-BBEB3C45D704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concept.Service.HostBuilder.Abstractions", "Concept.Service.HostBuilder.Abstractions\Concept.Service.HostBuilder.Abstractions.csproj", "{A34F51F1-E9FF-4EDB-94BE-DFFBA3A419B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concept.Service.HostBuilder.Abstractions", "src\Concept.Service.HostBuilder.Abstractions\Concept.Service.HostBuilder.Abstractions.csproj", "{187035B1-7D95-4C7C-83C1-5047FF3133C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +85,10 @@ Global
 		{8F321D0C-D857-4EF2-99B4-BBEB3C45D704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F321D0C-D857-4EF2-99B4-BBEB3C45D704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F321D0C-D857-4EF2-99B4-BBEB3C45D704}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A34F51F1-E9FF-4EDB-94BE-DFFBA3A419B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A34F51F1-E9FF-4EDB-94BE-DFFBA3A419B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A34F51F1-E9FF-4EDB-94BE-DFFBA3A419B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A34F51F1-E9FF-4EDB-94BE-DFFBA3A419B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187035B1-7D95-4C7C-83C1-5047FF3133C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187035B1-7D95-4C7C-83C1-5047FF3133C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187035B1-7D95-4C7C-83C1-5047FF3133C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187035B1-7D95-4C7C-83C1-5047FF3133C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

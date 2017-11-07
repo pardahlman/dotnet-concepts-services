@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Concept.Service.HostBuilder.Abstractions\Concept.Service.HostBuilder.Abstractions.csproj" />
+    <ProjectReference Include="..\Concept.Service.HostBuilder.Abstractions\Concept.Service.HostBuilder.Abstractions.csproj" />
     <ProjectReference Include="..\Concept.Service\Concept.Service.csproj" />
   </ItemGroup>
 
