@@ -3,16 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Concept.Logging;
+using Concept.Service.HostBuilder.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Concept.Service.HostBuilder
 {
-  public interface IServiceHost
-  {
-    IServiceProvider Services { get; set; }
-    Task StartAsync(CancellationToken ct = default(CancellationToken));
-    Task StopAsync(CancellationToken ct = default(CancellationToken));
-  }
 
   public static class ServiceHostExtensions
   {

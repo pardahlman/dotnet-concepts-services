@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Concept.Logging;
-using Concept.Service.HostBuilder;
+using Concept.Service.HostBuilder.Abstractions;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Concept.Service.AspNetCore

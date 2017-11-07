@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Concept.Service.HostBuilder;
+using Concept.Service.HostBuilder.Abstractions;
 
 namespace Concept.Service.ConsoleHost
 {

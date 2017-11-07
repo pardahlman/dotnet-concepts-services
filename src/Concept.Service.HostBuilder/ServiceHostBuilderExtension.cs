@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Concept.Service.HostBuilder.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Concept.Service.HostBuilder
 {

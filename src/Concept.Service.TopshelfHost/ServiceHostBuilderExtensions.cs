@@ -1,5 +1,5 @@
 ﻿using System;
-using Concept.Service.HostBuilder;
+using Concept.Service.HostBuilder.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Concept.Service.TopshelfHost

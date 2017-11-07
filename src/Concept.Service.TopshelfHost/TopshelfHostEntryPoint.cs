@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Concept.Service.HostBuilder;
+using Concept.Service.HostBuilder.Abstractions;
 using Concept.Service.TopshelfHost.Logging;
 using Topshelf;
 

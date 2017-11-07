@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Concept.Logging;
 using Concept.Service.AspNetCore.Abstractions;
-using Concept.Service.HostBuilder;
+using Concept.Service.HostBuilder.Abstractions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
