@@ -10,15 +10,6 @@ namespace Example.ServiceWithApi.Service
 {
   public class OpinionatedFooBootstrap : OpinionatedAspNetCoreBootstrap<FooService>
   {
-    public override ServiceMetadata CreateMetadata()
-    {
-      return new ServiceMetadata
-      {
-        Name = nameof(FooService),
-        Type = typeof(FooService)
-      };
-    }
-
     public override void ConfigureServices(IServiceCollection collection)
     {
       collection.AddMvc();

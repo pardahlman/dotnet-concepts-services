@@ -6,7 +6,7 @@ namespace Concept.Service.HostBuilder.Abstractions
 {
   public interface IServiceHost
   {
-    IServiceProvider Services { get; set; }
+    IServiceProvider Services { get; }
     Task StartAsync(CancellationToken ct = default(CancellationToken));
     Task StopAsync(CancellationToken ct = default(CancellationToken));
   }

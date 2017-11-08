@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -45,9 +46,9 @@ namespace Concept.Service.Opinionated.AspNetCore
 
     public abstract void Configure(IApplicationBuilder app, IHostingEnvironment env);
 
-    protected override Task<TService> CreateServiceAsync()
+    protected override Task<TService> CreateServiceAsync(CancellationToken ct = default (CancellationToken))
     {
-      return _factoryCompletion.Task.ContinueWith(t => t.Result());
+      return _factoryCompletion.Task.ContinueWith(t => t.Result(), ct);
     }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Concept.Service.AspNetCore.Abstractions;
 using Microsoft.AspNetCore.Builder;
@@ -35,20 +36,9 @@ namespace Concept.Service.AspNetCore
       _factoryCompletion.TrySetResult(() => serviceFactory() as TService);
     }
 
-    protected override Task<TService> CreateServiceAsync()
+    protected override Task<TService> CreateServiceAsync(CancellationToken ct = default (CancellationToken))
     {
-      return _factoryCompletion.Task.ContinueWith(t => t.Result());
-    }
-
-    public override ServiceMetadata CreateMetadata()
-    {
-      return new ServiceMetadata
-      {
-        Name = typeof(TService).Name,
-        Type = typeof(TService),
-        Version = typeof(TService).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion
-
-      };
+      return _factoryCompletion.Task.ContinueWith(t => t.Result(), ct);
     }
 
     public override void ConfigureLogger() { /* Logger is configured by the Webhost */}

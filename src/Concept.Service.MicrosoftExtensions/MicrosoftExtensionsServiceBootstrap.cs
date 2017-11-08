@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -36,7 +37,7 @@ namespace Concept.Service.MicrosoftExtensions
       ServiceProvider = BuildServiceProvider(ServiceCollection);
     }
 
-    protected override Task<TService> CreateServiceAsync()
+    protected override Task<TService> CreateServiceAsync(CancellationToken ct = default (CancellationToken))
     {
       return Task.FromResult(ServiceProvider.GetService<TService>());
     }

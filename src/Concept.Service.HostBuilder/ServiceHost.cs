@@ -26,14 +26,19 @@ namespace Concept.Service.HostBuilder
 
   public class ServiceHost : IServiceHost, IDisposable
   {
-    private ServiceLifetime _lifetime;
-    public IServiceProvider Services { get; set; }
+    private readonly ServiceLifetime _lifetime;
+    public IServiceProvider Services { get; }
     private readonly ILog _logger = LogProvider.For<ServiceHost>();
+
+    public ServiceHost(IServiceProvider serviceProvider)
+    {
+      Services = serviceProvider;
+      _lifetime = serviceProvider.GetService<ServiceLifetime>();
+    }
 
     public async Task StartAsync(CancellationToken ct = default(CancellationToken))
     {
       _logger.DebugFormat("Preparing to start services in the service host.");
-      _lifetime = new ServiceLifetime();
       var entryPoints = Services.GetServices<IServiceEntryPoint>();
       var entryTasks = entryPoints
         .Select(e =>
@@ -57,6 +62,7 @@ namespace Concept.Service.HostBuilder
     {
       _lifetime.NotifyStopping();
       Dispose();
+      _lifetime.NotifyStopped();
       return Task.CompletedTask;
     }
 

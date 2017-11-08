@@ -16,7 +16,10 @@ namespace Concept.Service.HostBuilder
       bootstrap.PostConfigureLogger();
 
       _serviceCollection = new ServiceCollection();
-      _serviceCollection.AddSingleton(bootstrap)
+      _serviceCollection
+        .AddSingleton(new ServiceLifetime())
+        .AddSingleton<IServiceLifetime>(provider => provider.GetService<ServiceLifetime>())
+        .AddSingleton(bootstrap)
         .AddSingleton(bootstrap.CreateMetadata());
     }
 
@@ -32,10 +35,7 @@ namespace Concept.Service.HostBuilder
 
     public IServiceHost Build()
     {
-      return new ServiceHost
-      {
-        Services = _serviceCollection.BuildServiceProvider()
-      };
+      return new ServiceHost(_serviceCollection.BuildServiceProvider());
     }
   }
   

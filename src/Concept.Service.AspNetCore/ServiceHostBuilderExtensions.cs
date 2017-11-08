@@ -21,7 +21,7 @@ namespace Concept.Service.AspNetCore
         collection.AddSingleton(provider =>
         {
           var serviceMetadata = provider.GetService<ServiceMetadata>();
-          if (!(provider.GetService<ServiceBootstrap>() is IAspNetCoreBootstrap aspNetBootstrap))
+          if (!(provider.GetService<IServiceBootstrap>() is IAspNetCoreBootstrap aspNetBootstrap))
           {
             Logger.Info("The service bootstrap {serviceBootstrap} does not implement IAspNetCoreBootstrap. WebHost will not be created", serviceMetadata.GetType().Name);
             throw new Exception("Bootstrap is not of type IAspNetCoreBootstrap.");

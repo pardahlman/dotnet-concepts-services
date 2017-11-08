@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -44,6 +45,20 @@ namespace Concept.Service
   {
     private TService _service;
 
+    public override ServiceMetadata CreateMetadata()
+    {
+      var serviceType = typeof(TService);
+      var versionInfo = FileVersionInfo.GetVersionInfo(serviceType.Assembly.Location);
+      return new ServiceMetadata
+      {
+         Name = serviceType.Name,
+         Type = serviceType,
+         Version = versionInfo.ProductVersion,
+         Commit = versionInfo.FileVersion,
+         Description = serviceType.Name
+      };
+    }
+
     public override async Task StartServiceAsync(CancellationToken ct = default(CancellationToken))
     {
       if (_service != null)
@@ -65,10 +80,10 @@ namespace Concept.Service
 
     public override async Task<Service> GetServiceAsync(CancellationToken ct = default(CancellationToken))
     {
-      _service = _service ?? await CreateServiceAsync();
+      _service = _service ?? await CreateServiceAsync(ct);
       return _service;
     }
 
-    protected abstract Task<TService> CreateServiceAsync();
+    protected abstract Task<TService> CreateServiceAsync(CancellationToken ct = default (CancellationToken));
   }
 }
