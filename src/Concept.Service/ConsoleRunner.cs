@@ -33,11 +33,11 @@ namespace Concept.Service
       bootstrap.PostRegisterDependencies();
       logger.Info("Services registered.");
 
-      
+      var service = await bootstrap.GetServiceAsync(ct);
       var configureDuration = new TimeSpan(Stopwatch.GetTimestamp() - startTick);
       logger.Info("Service configured and instanciated in {configurationDuration:g} seconds.", configureDuration);
 
-      await bootstrap.StartServiceAsync(ct);
+      await service.StartAsync(ct);
 
       if (ct == default(CancellationToken))
       {
@@ -46,7 +46,7 @@ namespace Concept.Service
         var cancelCompletionSource = new TaskCompletionSource<ConsoleCancelEventArgs>();
         Console.CancelKeyPress += (sender, args) =>
         {
-          bootstrap.StopServiceAsync(ct).GetAwaiter().GetResult();
+          service.StopAsync(ct).GetAwaiter().GetResult();
           (bootstrap as IDisposable)?.Dispose();
           cancelCompletionSource.TrySetResult(args);
         };
@@ -57,7 +57,7 @@ namespace Concept.Service
         logger.Info("Starting service {serviceName}. Stop service by calling cancel on provided CancellationToken", metadata.Name);
         ct.Register(() =>
         {
-          bootstrap.StopServiceAsync(ct).GetAwaiter().GetResult();
+          service.StopAsync(ct).GetAwaiter().GetResult();
           (bootstrap as IDisposable)?.Dispose();
         });
       }

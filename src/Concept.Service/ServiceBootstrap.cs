@@ -18,9 +18,6 @@ namespace Concept.Service
     void PostRegisterDependencies();
 
     Task<Service> GetServiceAsync(CancellationToken ct = default(CancellationToken));
-
-    Task StartServiceAsync(CancellationToken ct = default(CancellationToken));
-    Task StopServiceAsync(CancellationToken ct = default(CancellationToken));
   }
 
   public abstract class ServiceBootstrap : IServiceBootstrap
@@ -36,9 +33,6 @@ namespace Concept.Service
     public virtual void PostRegisterDependencies() { }
 
     public abstract Task<Service> GetServiceAsync(CancellationToken ct = default(CancellationToken));
-
-    public abstract Task StartServiceAsync(CancellationToken ct = default(CancellationToken));
-    public abstract Task StopServiceAsync(CancellationToken ct = default(CancellationToken));
   }
 
   public abstract class ServiceBootstrap<TService> : ServiceBootstrap where TService : Service
@@ -57,25 +51,6 @@ namespace Concept.Service
          Commit = versionInfo.FileVersion,
          Description = serviceType.Name
       };
-    }
-
-    public override async Task StartServiceAsync(CancellationToken ct = default(CancellationToken))
-    {
-      if (_service != null)
-      {
-        throw new ApplicationException("Service is already started.");
-      }
-      _service = await GetServiceAsync(ct) as TService;
-      await _service.StartAsync(ct);
-    }
-
-    public override Task StopServiceAsync(CancellationToken ct = default(CancellationToken))
-    {
-      if (_service == null)
-      {
-        throw new NullReferenceException("Is service started?");
-      }
-      return _service.StopAsync(ct);
     }
 
     public override async Task<Service> GetServiceAsync(CancellationToken ct = default(CancellationToken))
